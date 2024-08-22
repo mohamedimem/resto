@@ -1,8 +1,8 @@
 import { Component, OnInit ,NgModule} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth/auth.service';
-import { TokenStorageService } from '../auth/token-storage.service';
+import { AuthService } from '../../auth/auth.service';
+import { TokenStorageService } from '../../auth/token-storage.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -35,23 +35,30 @@ export class AdminLoginComponent implements OnInit {
     }
   }
 
+  goToRegister(): void {
+
+          this.router.navigate(['/register']);
+
+  }
+
   onSubmit(): void {
     const { username, password } = this.form;
     console.log(username);
     console.log(password);
-    this.authService.register(username, password).subscribe(
+    this.authService.login(username, password).subscribe(
       data => {
         console.log(data);
-        this.router.navigate(['/add-employee']);
+        if(username=="admin"){
+          this.router.navigate(['/add-employee']);
+        }else{
+          this.router.navigate(['/home']);
+        }
         this.tokenStorage.saveUser(data);
         this.isLoggedIn = true;
       },
       err => {
         console.log(err);
         this.errorMessage = err.error.message;
-        if(err.error.message=="True"){
-          this.router.navigate(['/add-employee']);
-        }
         this.isLoginFailed = true;
       }
     );

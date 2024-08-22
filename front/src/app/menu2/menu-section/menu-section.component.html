@@ -1,0 +1,33 @@
+<!-- menu-section.component.html -->
+<div>
+    <h2>Menu Management</h2>
+
+    <!-- Add Week Section -->
+    <div>
+        <button (click)="addWeek()">Add Week</button>
+    </div>
+
+    <!-- Select Week Section -->
+    <div *ngIf="weeks.length > 0">
+        <h3>Select a Week</h3>
+        <select [(ngModel)]="selectedWeekId" (change)="onWeekSelect()">
+      <option *ngFor="let week of weeks" [value]="week.id">{{ week.name }}</option>
+    </select>
+    </div>
+
+    <!-- Add Day Section -->
+    <div *ngIf="selectedWeekId">
+        <h3>Add a Day to the Selected Week</h3>
+        <button (click)="addDay()">Add Day</button>
+    </div>
+
+    <!-- Display Days in the Selected Week -->
+    <div *ngIf="days.length > 0">
+        <h3>Days in {{ getSelectedWeekName() }}</h3>
+        <ul>
+            <li *ngFor="let day of days">
+                <a [routerLink]="['/menu', selectedWeekId, 'day', day.id]">{{ day.date }}</a>
+            </li>
+        </ul>
+    </div>
+</div>

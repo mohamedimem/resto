@@ -1,8 +1,6 @@
-package com.example.demo.menu2;
+package com.example.demo.menu2.model;
 
 import jakarta.persistence.*;
-
-import java.util.List;
 
 @Entity
 public class Reservation {
@@ -21,6 +19,10 @@ public class Reservation {
     private int propreteRating;
 
     private String feedback;
+
+    public Object getDayId() {
+        return dayId;
+    }
 
     // Getters and Setters
 }

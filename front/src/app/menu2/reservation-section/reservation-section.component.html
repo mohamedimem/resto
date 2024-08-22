@@ -1,0 +1,47 @@
+<!-- reservation-section.component.html -->
+<div>
+    <h2>Reservation</h2>
+
+    <!-- Select Week Section -->
+    <div *ngIf="weeks.length > 0">
+        <h3>Select a Week</h3>
+        <select [(ngModel)]="selectedWeekId" (change)="onWeekSelect()">
+      <option *ngFor="let week of weeks" [value]="week.id">{{ week.name }}</option>
+    </select>
+    </div>
+
+    <!-- Display Days in the Selected Week -->
+    <div *ngIf="days.length > 0">
+        <h3>Days in {{ getSelectedWeekName() }}</h3>
+        <ul>
+            <li *ngFor="let day of days">
+                <a (click)="onDaySelect(day.id)">{{ day.date }}</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Reservation Form -->
+    <div *ngIf="selectedDay">
+        <h3>Reserve Menu for {{ selectedDay.date }}</h3>
+
+        <label>Choose Menu:</label>
+        <select [(ngModel)]="reservation.chosenMenu">
+      <option *ngFor="let menuItem of availableMenus" [value]="menuItem">{{ menuItem }}</option>
+    </select>
+
+        <h3>Rate Your Experience</h3>
+        <label>Repas:</label>
+        <input type="range" min="1" max="5" [(ngModel)]="reservation.repasRating" />
+
+        <label>Service:</label>
+        <input type="range" min="1" max="5" [(ngModel)]="reservation.serviceRating" />
+
+        <label>Propreté:</label>
+        <input type="range" min="1" max="5" [(ngModel)]="reservation.propreteRating" />
+
+        <label>Feedback:</label>
+        <textarea [(ngModel)]="reservation.feedback"></textarea>
+
+        <button (click)="submitReservation()">Submit</button>
+    </div>
+</div>

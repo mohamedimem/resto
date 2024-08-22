@@ -18,19 +18,19 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(adminName: string, adminPassword: string): Observable<any> {
-    return this.http.post(AUTH_API + 'login', {
-      adminName,
-      adminPassword
-    }, httpOptions,
-  );
+    return this.http.post("http://localhost:4200/api/v1/admin/login", {
+       "adminName": adminName,
+      "adminPassword": adminPassword,
+    }, { headers, responseType: 'json' }
+    );
   }
 
 
   register(adminName: string, adminPassword: string): Observable<any> {
-    return this.http.post("http://localhost:8080/api/v1/admin/register", {
+    return this.http.post("http://localhost:4200/api/v1/admin/register", {
        "adminName": adminName,
       "adminPassword": adminPassword,
-    }, { headers, responseType: 'text' as 'json'  }
+    }, { headers, responseType: 'json' }
     );
   }
 }

@@ -1,0 +1,21 @@
+<!-- day-menu.component.html -->
+<div>
+    <h2>Manage Menu for {{ day?.date }}</h2>
+
+    <label>Entrée:</label>
+    <input [(ngModel)]="day.entree" />
+
+    <label>Suite:</label>
+    <input [(ngModel)]="day.suite" />
+
+    <label>Salade:</label>
+    <input [(ngModel)]="day.salade" />
+
+    <label>Garniture:</label>
+    <input [(ngModel)]="day.garniture" />
+
+    <label>Dessert:</label>
+    <input [(ngModel)]="day.dessert" />
+
+    <button (click)="saveDay()">Save</button>
+</div>

@@ -28,7 +28,7 @@ public class EmployeeController {
 	private EmployeeRepository employeeRepository;
 	
 	//get all data
-	@CrossOrigin(origins = "http://localhost:8080")
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/employees")
 	public List <Employee> getAllEmployees(){
 		return employeeRepository.findAll();

@@ -38,6 +38,7 @@ public class adminController {
 	}
 
 	// Admin login
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping("/admin/login")
 	public ResponseEntity<String> loginAdmin(@RequestBody adminModel admin) {
 		// Find the admin by name
@@ -45,7 +46,12 @@ public class adminController {
 		if (foundAdmin.isPresent()) {
 			// Check if the password matches
 			if (foundAdmin.get().getAdminPassword().equals(admin.getAdminPassword())) {
-				return ResponseEntity.ok("Login successful.");
+				if(admin.getAdminName()=="admin"){
+					return ResponseEntity.ok("True");
+				}else{
+					return ResponseEntity.ok("True");
+				}
+
 			} else {
 				return ResponseEntity.status(401).body("Invalid password.");
 			}

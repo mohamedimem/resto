@@ -30,6 +30,7 @@ public class MenuService {
 
     public Day addDay(Long weekId, Day day) {
         Week week = weekRepository.findById(weekId).orElseThrow();
+        System.out.println(week);
         day.setWeek(week);
         return dayRepository.save(day);
     }

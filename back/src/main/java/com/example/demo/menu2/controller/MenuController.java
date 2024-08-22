@@ -11,37 +11,42 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/menu")
-@CrossOrigin(origins = "http://localhost:4200")
 public class MenuController {
 
     @Autowired
     private MenuService menuService;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/weeks")
     public List<Week> getAllWeeks() {
         return menuService.getAllWeeks();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/weeks")
     public Week addWeek(@RequestBody Week week) {
         return menuService.addWeek(week);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/weeks/{weekId}/days")
-    public Day addDay(@PathVariable Long weekId, @RequestBody Day day) {
+    public Day addDay(@PathVariable("weekId") Long weekId, @RequestBody Day day) {
         return menuService.addDay(weekId, day);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/weeks/{weekId}/days")
-    public List<Day> getDaysByWeek(@PathVariable Long weekId) {
+    public List<Day> getDaysByWeek(@PathVariable("weekId") Long weekId) {
         return menuService.getDaysByWeek(weekId);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("/days/{dayId}")
-    public void deleteDay(@PathVariable Long dayId) {
+    public void deleteDay(@PathVariable("dayId") Long dayId) {
         menuService.deleteDay(dayId);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/days/{dayId}")
     public void updateDay(@RequestBody Day day) {
         menuService.updateDay(day);
