@@ -22,12 +22,16 @@ public class MenuController {
         return menuService.getAllWeeks();
     }
 
+
+    //add week
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/weeks")
     public Week addWeek(@RequestBody Week week) {
         return menuService.addWeek(week);
     }
 
+
+    //add a day to a week
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/weeks/{weekId}/days")
     public Day addDay(@PathVariable("weekId") Long weekId, @RequestBody Day day) {
@@ -46,6 +50,8 @@ public class MenuController {
         menuService.deleteDay(dayId);
     }
 
+
+    //update a day
     @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/days/{dayId}")
     public void updateDay(@RequestBody Day day) {
